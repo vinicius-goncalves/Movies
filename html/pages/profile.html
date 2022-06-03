@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Minha conta - Lembre-me de assistir</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="/style/template.css">
+    <link rel="stylesheet" href="/style/user-profile.css">
+    <link rel="stylesheet alternative" href="/style/loaders.css">
+</head>
+<body>
+
+    <div id="loader-content">
+        <div id="loader"></div>
+    </div>
+
+    <nav data-js="nav-bar">
+        <a href="#" data-js="logged-in" style="display: none;" data-search="search">Buscar filme</a>
+        <a href="./library.html" data-js="logged-in" style="display: none;">Minha biblioteca</a>
+        <a href="../pages/profile.html" data-js="logged-in" style="display: none;">Minha conta</a>
+        <a href="#" data-js="logged-in" style="display: none;" data-loggout="loggout">Sair</a>
+
+        <a href="#" data-js="logged-out" style="display: none;">Entrar</a>
+        <a href="#" data-js="logged-out" style="display: none;">Registrar</a>
+
+        <img src="/images/user-photo-profile.png" data-js="logged-in" id="user-image-profile-navbar">
+
+    </nav>
+    
+    <!-- User profile -->
+    <section>
+        <div id="user-details-container">
+            <h2 id="user-message-information"></h2> 
+            <div id="user-description">
+                <div id="user-image-container">
+                    <div id="loader-profile-image-container">
+                        <div id="loader-profile"></div>
+                    </div>
+                    <label>
+                        <i class="material-icons md-48" id="camera-icon">photo_camera</i>
+                        <img src="/images/user-photo-profile.png" id="user-image" alt="">
+                        <input type="file" name="send-new-photo" id="send-new-photo">
+                    </label>
+                </div>
+                <div id="user-lore" data-js="user-lore">
+                    <div>
+                        <label for="username">Username</label>
+                        <input type="text" name="" id="username" placeholder="Username">
+                    </div>
+                    <div>
+                        <label for="email">Email</label>
+                        <input type="text" name="" id="email" placeholder="User email">
+                    </div>
+                    <div>
+                        <label for="password">Password</label>
+                        <input type="password" name="" id="password" placeholder="Password">
+                    </div>
+
+                    <input type="button" value="Confirmar alteração" id="confirm-details" data-user="confirm-details">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script type="module" src="/js/auth.js"></script>
+    <script type="moduel" src="/js/userExperience.js"></script>
+    <script type="module" src="/js/profile.js"></script>
+</body>
+</html>

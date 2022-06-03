@@ -1,0 +1,141 @@
+#form-search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25px;
+}
+
+#form-search-container #search-movie-term {
+    width: 450px;
+    padding: 10px;
+    background-color: var(--color1);
+    border: none;
+    outline: none;
+    color: white;
+    font-size: x-large;
+    text-align: center;
+}
+
+#form-search-container #button-search {
+    padding: 10px;
+    background-color: red;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    margin-left: 25px;
+    width: 120px;
+    border: none;
+    transition: box-shadow .5s;
+}
+
+#form-search-container #button-search:hover {
+    box-shadow: 1px 1px 10px var(--color2);
+}
+
+/*
+ Section that appears the movies result by searched term before
+ ! This sections is for result container, when the user makes a search
+ */
+
+#section-search-result-container {
+    color: white;
+    display: flex;
+    padding: 25px;
+    font-size: 23px;
+}
+
+#ul-movies-search-result {
+    list-style-type: none;
+}
+
+#ul-movies-search-result li {
+    display: flex;
+}
+
+/* 
+    Add to library button style
+    ! Style for button 'Add to library', when the user clicks on this one
+*/
+
+.add-to-library {
+    width: 250px;
+    height: 25px;
+    background-color: var(--color2);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 25px 0px;
+    border: none;
+    transition: background-color 1s, width 1s, box-shadow .5s;
+    cursor: pointer;
+    position: relative;
+    font-size: 16px;
+}
+
+.add-to-library:hover {
+    box-shadow: 1px 1px 10px red;
+}
+
+.add-to-library .text-add-to-library {
+    transition: opacity 400ms;
+    opacity: 1;
+}
+
+.add-to-library:focus .text-add-to-library {
+    opacity: 0;
+}  
+
+.added-into-library {
+    opacity: 0;
+    transition: opacity .6s;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    cursor: pointer;
+}
+
+.add-to-library:focus {
+    background-color: #1f9401;
+    box-shadow: 1px 1px 5px #1f9401;
+}
+
+.add-to-library:focus .added-into-library {
+    transition-delay: .5s;
+    opacity: 1;
+}
+
+/* Add to library button style */
+
+/*
+    Movie details style
+    ! This section contains the details like movie Title, movie Description,
+    ! movie Release Date, and others details like this
+*/
+
+.movie-poster {
+    width: 200px;
+    height: 330px;
+    margin-bottom: 25px;
+    margin-right: 25px;
+}
+
+.movie-name {
+    font-size: 28px;
+}
+
+.movie-details-container {
+    margin-bottom: 25px;
+}
+
+.movie-details-container .release-date {
+    color: #b4b4b4;
+    font-weight: 100;
+    font-size: large;
+}
+
+.movie-description {
+    max-width: 700px;
+    text-align: justify;
+}

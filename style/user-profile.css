@@ -1,0 +1,178 @@
+section {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -45%);
+    width: 90%;
+}
+
+#user-image-profile {
+    width: 48px;
+    height: 48;
+    border-radius: 50%;
+    border: 1px solid white;
+    cursor: pointer;
+}
+
+#user-details-container {
+    background-color: var(--color0);
+    height: 700px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#for-user-information {
+    margin: 25px 0;
+    color: red;
+}
+
+#user-image-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+#user-image {
+    width: 128px;
+    height: 128px;
+    text-align: auto;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 5px solid var(--color4);
+}
+
+#camera-icon {
+    position: absolute;
+    top: 33%;
+    left: 31%;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    opacity: 0;
+    cursor: pointer;
+    transition: opacity .25s;
+    transform: scale(1.2);
+}
+
+#camera-icon:hover {
+    opacity: 1;
+}
+
+::-webkit-file-upload-button {
+    cursor: pointer;
+}
+
+input[type="file"] {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    opacity: 0;
+}
+
+#user-image-container:hover #camera-icon {
+    opacity: 1;
+}
+
+.material-icons.md-48 {
+    font-size: 48px;
+    color: white;
+}
+
+#user-description {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: inherit;
+    flex-direction: column;
+}
+
+#user-lore {
+    margin: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#user-lore label {
+    display: block;
+    padding: 10px 0;
+    color: white;
+    font-weight: bold;
+}
+
+#user-lore input {
+    width: 300px;
+    padding: 5px;
+    margin: 5px 0;
+    background-color: var(--color1);
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color: white;
+}
+
+#user-lore ::placeholder {
+    color: rgb(150, 150, 150);
+}
+
+#user-lore #confirm-details {
+    margin: 25px 0;
+    color: white;
+    background-color: var(--color2);
+    width: 350px;
+    cursor: pointer;
+    transition: box-shadow .25s;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+#user-lore #confirm-details:hover {
+    box-shadow: 1px 1px 15px var(--color2);
+}
+
+
+/**
+ * Profile photo loader
+ */
+#loader-profile-image-container {
+    position: absolute;
+}
+
+#loader-profile {
+    width: 100px;
+    height: 100px;
+    border: 5px solid white;
+    border-bottom-color: #fc0a02;
+    border-radius: 50%;
+    animation: rotate 1s infinite alternate;
+    opacity: .5;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/**
+ * User message information
+ */
+
+#user-message-information {
+    display: block;
+    margin-top: 25px;
+    color: white;
+}

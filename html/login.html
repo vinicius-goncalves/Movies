@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/main-style.css">
+    <title>Login - Lembre-me de assistir</title>
+</head>
+<body>
+    <nav data-js="nav-bar">
+        <a href="#" data-js="logged-in" style="display: none;">Buscar filme</a>
+        <a href="#" data-js="logged-in" style="display: none;">Minha biblioteca</a>
+        <a href="#" data-js="logged-in" style="display: none;">Minha conta</a>
+        <a href="#" data-js="logged-in" style="display: none;" data-loggout="loggout">Sair</a>
+
+        <a href="#" data-js="logged-out" style="display: none;">Entrar</a>
+        <a href="#" data-js="logged-out" style="display: none;">Registrar</a>
+    </nav>
+
+    <section id="login-container" style="display: block;">
+        <main>
+            <header>
+                <h2>Realizar login</h2>
+                <h1>Lembre me de assistir!</h1>
+            </header>
+            <form action="" data-js="login-container">
+                <div id="inputs">
+                    <input type="email" id="email" placeholder="Email">
+                    <input type="password" id="password" placeholder="Password">
+                </div>
+                <div id="buttons">
+                    <input type="submit" value="Acessar minha conta" id="login-button">
+                    <div class="or">
+                        <span>
+                            <p>Ou</p>
+                        </span>
+                    </div>
+                    <aside>
+                        <img src="../images/btn_google_signin_dark_normal_web.png" id="login-with-google">
+                    </aside>
+                </div>
+            </form>
+        </main>
+    </section>
+
+    <script type="module" src="../js/auth.js"></script>
+    <script type="module" src="../js/login.js"></script>
+</body>
+</html>

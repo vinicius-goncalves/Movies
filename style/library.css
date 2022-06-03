@@ -1,0 +1,30 @@
+/*
+    Section that appears the movies result by searched term before
+    ! This sections is for result container, when the user makes a search
+ */
+#ul-movies-library {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 50px;
+}
+
+#ul-movies-library li {
+    margin: 5px;
+}
+
+.movie-poster {
+    width: 200px;
+    height: 330px;
+    margin-bottom: 25px;
+    transition: transform .2s;
+
+}
+
+.movie-poster:hover {
+    transform: translateY(-20px);
+    cursor: pointer;
+}
