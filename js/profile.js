@@ -1,4 +1,4 @@
-import { auth, storage } from './firebase.js'
+import { auth, storage } from './authAndRequests.js'
 import { userNavbar, navbarContainer } from './userExperience.js'
 
 import { onAuthStateChanged, signOut, updateProfile, updatePassword, reauthenticateWithCredential, EmailAuthProvider } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-auth.js"

@@ -9,15 +9,16 @@
 </head>
 <body>
     <nav data-js="nav-bar">
-        <a href="#" class="logged-in">Buscar filme</a>
-        <a href="#" class="logged-in">Minha biblioteca</a>
-        <a href="#" class="logged-in">Minha conta</a>
+        <a href="#" data-js="logged-in" style="display: none;">Buscar filme</a>
+        <a href="#" data-js="logged-in" style="display: none;">Minha biblioteca</a>
+        <a href="#" data-js="logged-in" style="display: none;">Minha conta</a>
         <a href="#" data-js="logged-in" style="display: none;" data-loggout="loggout">Sair</a>
 
-        <a href="#" class="logged-out">Entrar</a>
-        <a href="#" class="logged-out">Registrar</a>
+        <a href="#" data-js="logged-out" style="display: none;">Entrar</a>
+        <a href="#" data-js="logged-out" style="display: none;">Registrar</a>
     </nav>
-    <section id="register-container" style="display: block;">
+    
+    <section data-js="register-container">
         <main>
             <header>
                 <h2>Crie uma nova conta</h2>
@@ -43,11 +44,6 @@
         </main>
     </section>
 
-    <section id="logout-container" style="display: none;">
-        <p style="color: white;">Welcome ${user-here}.</p>
-        <input type="button" value="Logout" style="cursor: pointer;" id="logout">
-    </section>
-
-    <script type="module" src="../js/auth.js"></script>
+    <script type="module" src="../js/register.js"></script>
 </body>
 </html>
