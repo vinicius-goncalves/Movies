@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style/main-style.css">
+    <link rel="stylesheet" href="/style/register.css">
+    <link rel="stylesheet alternative" href="/style/template.css">
     <title>Register - Lembre-me de assistir</title>
 </head>
 <body>
@@ -18,18 +19,18 @@
         <a href="#" data-js="logged-out" style="display: none;">Registrar</a>
     </nav>
     
-    <section data-js="register-container">
+    <section id="register-container">
         <main>
             <header>
                 <h2>Crie uma nova conta</h2>
                 <h1>Lembre me de assistir!</h1>
             </header>
-            <form action="" data-js="register-container">
-                <div id="inputs">
+            <form data-js="register-container">
+                <div id="inputs" class="flex-column-configuration">
                     <input type="email" id="email" placeholder="Email">
                     <input type="password" id="password" placeholder="Password">
                 </div>
-                <div id="buttons">
+                <div id="buttons" class="flex-column-configuration">
                     <input type="submit" value="Criar minha conta" id="create-account-button">
                     <div class="or">
                         <span>
@@ -44,6 +45,7 @@
         </main>
     </section>
 
-    <script type="module" src="../js/register.js"></script>
+    <script type="module" src="/js/register.js"></script>
+    
 </body>
 </html>

@@ -1,34 +1,15 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-:root {
-    --color0: #291f37;
-    --color1: #54466a;
-    --color2: #d10700;
-    --color3: #fc0a02;
-    --color4: #ffffff;
-    --color5: #4285f4;
-    --color6: #1c1429;
-}
-
-body {
-    background-color: var(--color6);
-    font-family: Helvetica, sans-serif;
-}
-
-nav {
-    padding: 25px;
+.flex-column-configuration {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
-nav a {
-    color: white;
-    text-decoration: none;
-    margin: 0 25px;
+main {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 header {
@@ -64,17 +45,6 @@ header h1:hover::before {
     transform-origin: left;
 }
 
-main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    min-height: 89vh;
-    width: 100vw;
-    background-color: var(--color0);
-}
-
-
 .or {
     display: flex;
     position: relative;
@@ -102,20 +72,9 @@ main {
     background-color: var(--color1);
 }
 
-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 #buttons {
     margin: 10px;
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-
 }
 
 #buttons input {
@@ -138,21 +97,11 @@ section {
     box-shadow: 1px 1px 10px var(--color2);
 }
 
-#register-container {
-    width: 500px;
-    height: 500px;
-    background-color: var(--color1);
-}
-
 #login-with-google {
     cursor: pointer;
 }
 
 #inputs {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
     margin-top: 50px;
 }
 
@@ -169,28 +118,4 @@ section {
     border: none;
     outline: none;
     color: var(--color2);
-}
-
-#logout-container {
-    text-align: center;
-}
-
-#logout {
-    width: 450px;
-    padding: 5px;
-    font-weight: bold;
-    background-color: var(--color3);
-    transition: box-shadow .25s;
-    border: none;
-    font-size: medium;
-}
-
-#logout:hover {
-    box-shadow: 1px 1px 10px var(--color2);
-}
-
-#logout-container p {
-    font-size: 32px;
-    font-weight: 700;
-    margin: 25px
 }
