@@ -2,9 +2,8 @@ import { auth, db, apiKeyMovieDB } from './authAndRequests.js'
 import { userNavbar } from './userExperience.js'
 
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-auth.js"
-import { doc, addDoc, setDoc, updateDoc, getDoc, arrayUnion, arrayRemove, deleteDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-firestore.js"
+import { doc, getDoc } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-firestore.js"
 
-// Input here your API key from moviedb.org
 const urlToRequest = (movieId) => {
    return `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKeyMovieDB}`
 }
@@ -12,6 +11,8 @@ const urlToRequest = (movieId) => {
 const posterPath = (imageLocation) => {
     return `https://image.tmdb.org/t/p/w500/${imageLocation}`
 }
+
+const userProfileAtNavbar = document.querySelector('#user-image-profile-navbar')
 
 const ulMovieLibrary = document.querySelector('#ul-movies-library')
 
@@ -22,6 +23,10 @@ const ulMovieLibrary = document.querySelector('#ul-movies-library')
 //         console.log('b')
 //     }
 // }fetch(urlToRequest(moviesId)).then((a) => console.log(a))
+
+setTimeout(() => {
+    userProfileAtNavbar.src = auth.currentUser.photoURL
+}, 1000)
 
 onAuthStateChanged(auth, (user) => {
     if(user) {

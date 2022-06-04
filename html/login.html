@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style/main-style.css">
+    <link rel="stylesheet" href="/style/register-and-login.css">
+    <link rel="stylesheet" href="/style/template.css">
     <title>Login - Lembre-me de assistir</title>
 </head>
 <body>
@@ -25,11 +26,11 @@
                 <h1>Lembre me de assistir!</h1>
             </header>
             <form action="" data-js="login-container">
-                <div id="inputs">
+                <div id="inputs" class="flex-column-configuration">
                     <input type="email" id="email" placeholder="Email">
                     <input type="password" id="password" placeholder="Password">
                 </div>
-                <div id="buttons">
+                <div id="buttons" class="flex-column-configuration">
                     <input type="submit" value="Acessar minha conta" id="login-button">
                     <div class="or">
                         <span>
@@ -44,7 +45,7 @@
         </main>
     </section>
 
-    <script type="module" src="../js/auth.js"></script>
-    <script type="module" src="../js/login.js"></script>
+    <script type="module" src="/js/authAndRequests.js"></script>
+    <script type="module" src="/js/login.js"></script>
 </body>
 </html>

@@ -9,6 +9,12 @@ const formSearchContainer = document.querySelector('[data-js="form-search-contai
 const ulMoviesSearchRresult = document.querySelector('#ul-movies-search-result')
 const recentSearchContainer = document.querySelector('#recent-search')
 
+const userProfileAtNavbar = document.querySelector('#user-image-profile-navbar')
+
+setTimeout(() => {
+    userProfileAtNavbar.src = auth.currentUser.photoURL
+}, 2000)
+
 const currentUser = (user) => {
     return user.currentUser.uid
 }
