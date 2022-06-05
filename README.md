@@ -1,7 +1,7 @@
 ![](https://img.shields.io/badge/version-1.0.0-informational)
 
 # RememberMeToMovie
-Este é um projeto web de estudos para salvar filmes com base em interesse (gostou, não gostou, etc.) com banco de dados Firebase e **JavaScipt puro**.
+Este é um projeto web de estudos para salvar filmes com base em interesse (gostou, não gostou, etc.) com banco de dados do Firebase (Firestore) e **JavaScipt puro**.
 
 ## Inicialização
 Para começar, é necessário criar um novo projeto no [Firebase](https://firebase.google.com/docs/web/setup#add-sdk-and-initialize) e registrar um novo aplicativo. 
