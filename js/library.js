@@ -16,14 +16,6 @@ const userProfileAtNavbar = document.querySelector('#user-image-profile-navbar')
 
 const ulMovieLibrary = document.querySelector('#ul-movies-library')
 
-// const getMoviesFromDatabase = (user) => {
-//     if() {
-//         console.log('a')
-//     }else {
-//         console.log('b')
-//     }
-// }fetch(urlToRequest(moviesId)).then((a) => console.log(a))
-
 setTimeout(() => {
     userProfileAtNavbar.src = auth.currentUser.photoURL
 }, 1000)

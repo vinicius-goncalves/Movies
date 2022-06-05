@@ -40,19 +40,16 @@ const posterPath = (imageLocation) => {
 const verifyIfUserExistsInDb = async (user) => {
     getDoc(doc(db, "users", user)).then((dataSnapshot) => {
         if(dataSnapshot.exists()) {
-            console.log('Existe, ' + user)
+            return
         }else {
             setDoc(doc(db, "users", user), {
                 lastChange: serverTimestamp(),
                 moviesId: [],
                 recentSearchs: []
             })
-            console.log('Não existe. Criando um novo usuário')
         }
     })
 }
-
-
 
 /* Code refactoring [done] */
 const fetchResult = async (searchedTerm) => { 
