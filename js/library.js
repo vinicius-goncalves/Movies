@@ -15,33 +15,70 @@ const posterPath = (imageLocation) => {
 const userProfileAtNavbar = document.querySelector('#user-image-profile-navbar')
 
 const ulMovieLibrary = document.querySelector('#ul-movies-library')
+const lastDateMovieAdded = document.querySelector('.last-date-movie-added')
 
 setTimeout(() => {
     userProfileAtNavbar.src = auth.currentUser.photoURL
 }, 1000)
 
-onAuthStateChanged(auth, (user) => {
+onAuthStateChanged(auth, async (user) => {
     if(user) {
         userNavbar(user)
-        getDoc(doc(db, "users", auth.currentUser.uid)).then((fromDatabase) => {
-          const moviesId = fromDatabase.data().moviesId
-          moviesId.map((id) => { 
-              fetch(urlToRequest(id)).then((moviesReceivedFromMovieDb) => { 
-                  return moviesReceivedFromMovieDb.json()
-              }).then((movie) => {
 
-                console.log(movie)
+        await getDoc(doc(db, "users", auth.currentUser.uid)).then((fromDatabase) => {
 
-                ulMovieLibrary.innerHTML += 
-                `
-                <li data-li="${movie}">
-                    <img src="${posterPath(movie.poster_path)}" class="movie-poster">
-                </li>`
+            const { lastChange } = fromDatabase.data()
+            const correctLastMovieAddedDate = lastChange.toDate().toLocaleDateString('pt-BR', {
+                second: 'numeric',
+                minute: 'numeric',
+                hour: 'numeric',
+                day: 'numeric',
+                month: 'long',
+                year: '2-digit',
+            })
 
-              })
-          })
-        })
-    }else {
+            lastDateMovieAdded.textContent = `${correctLastMovieAddedDate}`
+
+            const moviesId = fromDatabase.data().moviesId
+            moviesId.map((id) => { 
+                fetch(urlToRequest(id)).then((moviesReceivedFromMovieDb) => { 
+                    return moviesReceivedFromMovieDb.json()
+                }).then((movie) => {
+                    ulMovieLibrary.innerHTML += 
+                    `<li data-li="${movie.id}">
+                            <div class="movie-informations">
+                                <img src="${posterPath(movie.poster_path)}" class="movie-poster">
+                                <i class="fas fa-trash" data-remove="${movie.id}"></i>
+                            </div>
+                        </li>`
+                    // ulMovieLibrary.innerHTML += 
+                    // `
+                    // <li data-li="${id}">
+                    //     <img src="${posterPath(movie.poster_path)}" class="movie-poster">
+                    // </li>`
+
+                    })
+                })
+            })
+    } else {
         userNavbar(user)
     }
 })
+
+ulMovieLibrary.addEventListener('click', event => {
+    const clickedDataRemove = event.target.dataset.remove
+    if(clickedDataRemove) {
+        document.querySelector(`[data-li="${clickedDataRemove}"]`).remove()
+    }
+})
+
+// setTimeout(() => {
+//     const lis = document.querySelectorAll('li')
+//         lis.forEach(li => {
+//             li.addEventListener('click', event => {
+//             if(event.target.parentElement) {
+//                 event.target.parentElement.remove()
+//                 }
+//             })
+//         })
+// }, 2000)

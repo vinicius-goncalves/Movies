@@ -10,7 +10,7 @@
 </head>
 <body>
     <nav data-js="nav-bar">
-        <a href="./searchMovies.html" data-js="logged-in" style="display: none;">Buscar filme</a>
+        <a href="./search-movies.html" data-js="logged-in" style="display: none;">Buscar filme</a>
         <a href="./library.html" data-js="logged-in" style="display: none;">Minha biblioteca</a>
         <a href="./profile.html" data-js="logged-in" style="display: none;">Minha conta</a>
         <a href="#" data-js="logged-in" style="display: none;" data-loggout="loggout">Sair</a>
@@ -21,14 +21,21 @@
         <img src="/images/user-photo-profile.png" data-js="logged-in" id="user-image-profile-navbar">
     </nav>
 
-        <ul id="ul-movies-library">
-            <li data-li="${value.id}">
+    <div class="user-information">
+        <h1>Informações</h1>
+        <p>A última vez que você adicionou um filme foi: <span class="last-date-movie-added"></span></p>
+    </div>
+
+    <ul id="ul-movies-library">
+        <li data-li="${value.id}">
+            <div class="movie-informations">
                 <img src="https://image.tmdb.org/t/p/w500/2WIwz0qJpnVAiofTAhrmhbKxuvE.jpg" class="movie-poster">
+                <i class="fas fa-trash" data-remove="${remove}"></i>
+            </div>
+        </li>
+    </ul>
 
-            </li>
-        </ul>
-
-        <script type="module" src="/js/library.js"></script>
-        <script src="https://kit.fontawesome.com/866e7f0be4.js" crossorigin="anonymous"></script>
+    <script type="module" src="/js/library.js"></script>
+    <script src="https://kit.fontawesome.com/866e7f0be4.js" crossorigin="anonymous"></script>
 </body>
 </html>
