@@ -24,7 +24,13 @@ export const auth = getAuth(app)
 export const provider = new GoogleAuthProvider()
 export const storage = getStorage(app)
 ```
-Caso tenha dúvidas, confire a documentação do [Firebase](https://firebase.google.com/docs/guides).
+
+> Caso tenha dúvidas, confire a documentação do [Firebase](https://firebase.google.com/docs/guides).
+
+## Demostranção
+Uma pequena demostração de como é o projeto:
+
+![](https://media2.giphy.com/media/Sc4bUrIDhVDRoc5f9l/giphy.gif)
 
 ***
 
