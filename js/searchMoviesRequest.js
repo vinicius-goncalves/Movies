@@ -97,14 +97,24 @@ const fetchResult = async (searchedTerm) => {
   
 }
 
+formSearchContainer.addEventListener('input', (event) => {
+    const term = event.target.value
+
+    if(term === '') {
+        ulMoviesSearchRresult.innerHTML = ''
+        return
+    }
+
+    fetchResult(term)
+})
+
 formSearchContainer.addEventListener('submit', (event) => {
     event.preventDefault()
 
     const termSearchContainer = event.target['search-movie-term']
-    const termToSearch = termSearchContainer.value
+    const termToSearch = termSearchContainer.value.trim()
 
     if(termToSearch === '') {
-        console.log('aaa')
         return
     }
 

@@ -2,7 +2,7 @@ import { auth, db, apiKeyMovieDB } from './authAndRequests.js'
 import { userNavbar } from './userExperience.js'
 
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-auth.js"
-import { doc, getDoc } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-firestore.js"
+import { doc, getDoc, deleteDoc, updateDoc, arrayRemove } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-firestore.js"
 
 const urlToRequest = (movieId) => {
    return `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKeyMovieDB}`
@@ -69,16 +69,8 @@ ulMovieLibrary.addEventListener('click', event => {
     const clickedDataRemove = event.target.dataset.remove
     if(clickedDataRemove) {
         document.querySelector(`[data-li="${clickedDataRemove}"]`).remove()
+        updateDoc(doc(db, "users", auth.currentUser.uid), {
+            moviesId: arrayRemove(clickedDataRemove)
+        }).then(() => console.log('Removido'))
     }
 })
-
-// setTimeout(() => {
-//     const lis = document.querySelectorAll('li')
-//         lis.forEach(li => {
-//             li.addEventListener('click', event => {
-//             if(event.target.parentElement) {
-//                 event.target.parentElement.remove()
-//                 }
-//             })
-//         })
-// }, 2000)
