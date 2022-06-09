@@ -1,5 +1,5 @@
 import { auth } from './authAndRequests.js'
-import { signOut } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-auth.js"
+import { signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-auth.js"
 
 export const navbarContainer = document.querySelector('[data-js="nav-bar"]')
 
@@ -27,3 +27,20 @@ export const signOutUser =
 export const getCurrentUser = (userFromAuth) => {
     return userFromAuth.currentUser
 }
+
+export const updateUserInformation = (condition, resolved, rejected, end) => {
+
+    const promise = new Promise((resolve, reject) => {
+        if(condition) {
+            resolve(resolved)
+        }else {
+            reject(rejected)
+        }
+    })
+
+    promise.catch((error) => console.log(error)).finally(() => end)
+}
+
+export const extractPropFromCurrentUser = (user, prop) => ({
+    ...user.currentUser
+})[prop]

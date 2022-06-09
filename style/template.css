@@ -38,13 +38,13 @@ nav a {
     cursor: pointer;
 }
 
-#loader-profile-image-container {
+#loader-profile-image-container-navbar {
     position: absolute;
     right: calc(63px / 2);
     z-index: 5;
 }
 
-#loader-profile {
+#loader-profile-navbar {
     width: 35px;
     height: 35px;
     border: 5px solid white;

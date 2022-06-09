@@ -1,6 +1,7 @@
 /**
  * ! Page loader
  * This stylesheet represent the loader content, when the page is loading, press F5 and see.
+ * As the website is under development, the page loader, it is disable.
  */
 
 /* #loader-content {
@@ -16,14 +17,14 @@
     align-items: center;
 } */
 
-#loader {
+/* #loader {
     width: 250px;
     height: 250px;
     border-radius: 50%;
     border: 5px solid rgb(255, 255, 255);
     border-bottom-color: rgb(255, 0, 0);
     animation: rotate 1s infinite;
-}
+} */
 
 @keyframes rotate {
     from {

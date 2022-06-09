@@ -1,5 +1,5 @@
 import { auth, db, apiKeyMovieDB } from "./authAndRequests.js"
-import { userNavbar, getCurrentUser } from "./userExperience.js"
+import { userNavbar, extractPropFromCurrentUser, updateUserInformation } from "./userExperience.js"
 
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-auth.js"
 
@@ -10,39 +10,28 @@ const ulMoviesSearchRresult = document.querySelector('#ul-movies-search-result')
 const recentSearchContainer = document.querySelector('#recent-search')
 
 const userProfileAtNavbar = document.querySelector('#user-image-profile-navbar')
-
-const loader = document.querySelector('#loader-profile-image-container')
+const loaderImageProfileAtNavbar = document.querySelector('#loader-profile-navbar')
 
 onAuthStateChanged(auth, async (user) => {
     if(user) {
-        await verifyIfUserExistsInDb(getCurrentUser(auth).uid)
         userNavbar(user)
-
-        const promis = new Promise((resolve, reject) => {
-            if(getCurrentUser(auth)) {
-               resolve(userProfileAtNavbar.src = getCurrentUser(auth).photoURL)
-            }else {
-                reject(new Error('Reerror'))
-            }
-        })
-
-        promis.finally(() => {
-            loader.style.display = 'none'
-        })
-
+        await verifyIfUserExistsInDb(extractPropFromCurrentUser(auth, 'uid'))
+        updateUserInformation(
+            user,
+            (
+                userProfileAtNavbar.src = extractPropFromCurrentUser(auth, 'photoURL')
+            ),
+            (
+               null
+            ),
+            (
+                loaderImageProfileAtNavbar.style.display = 'none'
+            )
+        )
     }else {
         userNavbar(user)
     }
 })
-
-
-const urlToRequest = (termToSearch) =>  
-    `https://api.themoviedb.org/3/search/movie?api_key=
-    ${apiKeyMovieDB}&language=pt-BR&query=
-    ${termToSearch}&page=1&include_adult=false`
-
-const posterPath = (imageLocation) => 
-    `https://image.tmdb.org/t/p/w500/${imageLocation}`
 
 const verifyIfUserExistsInDb = async (user) => {
     getDoc(doc(db, "users", user)).then((dataSnapshot) => {
@@ -58,12 +47,21 @@ const verifyIfUserExistsInDb = async (user) => {
     })
 }
 
+const urlToRequest = (termToSearch) =>  
+    'https://api.themoviedb.org/3/search/movie?api_key='
+    +apiKeyMovieDB+'&language=pt-BR&query='
+    +termToSearch+'&page=1&include_adult=false'
+
+const posterPath = (imageLocation) => 
+    `https://image.tmdb.org/t/p/w500/${imageLocation}`
+
 /* Code refactoring [done] */
 const fetchResult = async (searchedTerm) => { 
     
     ulMoviesSearchRresult.innerHTML = ''
 
     const requestToMovieAPI = await fetch(urlToRequest(searchedTerm))
+
     const responseFromMovieAPI = await requestToMovieAPI.json()
     const resultsMoviesByResponse = await responseFromMovieAPI.results
 
@@ -105,7 +103,7 @@ const fetchResult = async (searchedTerm) => {
 }
 
 formSearchContainer.addEventListener('input', (event) => {
-    const termSearched = event.target.value
+    const termSearched = event.target.value.trim()
 
     if(termSearched === '') {
         ulMoviesSearchRresult.innerHTML = ''
@@ -127,11 +125,11 @@ formSearchContainer.addEventListener('submit', (event) => {
 
     fetchResult(termToSearch)
 
-    updateDoc(doc(db, "users", currentUser(auth)), {
+    updateDoc(doc(db, "users", extractPropFromCurrentUser(auth, 'uid')), {
         recentSearchs: arrayUnion(termToSearch)
     })
 
-    getDoc(doc(db, "users", currentUser(auth))).then((recentSearchs) => {
+    getDoc(doc(db, "users", extractPropFromCurrentUser(auth, 'uid'))).then((recentSearchs) => {
         recentSearchContainer.innerHTML = ''
         const recentSearchsFromDatabase = recentSearchs.data().recentSearchs
         recentSearchsFromDatabase.map((value) => {
@@ -150,11 +148,11 @@ ulMoviesSearchRresult.addEventListener('click', async (event) => {
 
     const movieIdFromDataJs = event.target.dataset.js
     if(movieIdFromDataJs) {
-        updateDoc(doc(db, "users", currentUser(auth)), {
+        updateDoc(doc(db, "users", extractPropFromCurrentUser(auth, 'uid')), {
             lastChange: serverTimestamp(),
             moviesId: arrayUnion(movieIdFromDataJs)
         }).then(() => {
-            console.log('O filme ' + movieIdFromDataJs + ' foi adicionado ao banco de dados do usuário: ' + currentUser(auth))
+            console.log('O filme ' + movieIdFromDataJs + ' foi adicionado ao banco de dados do usuário: ' + extractPropFromCurrentUser(auth, 'uid'))
         })
     }
 })
