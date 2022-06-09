@@ -7,13 +7,13 @@ export const userNavbar = (user) => {
     const itemsNavbar = [...navbarContainer.children]
 
     itemsNavbar.forEach(item => {
-        const userItemNavbar = item.dataset.js.includes(user ? 'logged-in' : 'logged-out')
-        return userItemNavbar ? item.style.display = 'block' : item.style.display = 'none'
-        // if(userItemNavbar) {
-        //     item.style.display = 'block'
-        //     return
-        // }
-        // item.style.display = 'none'
+
+        const userLoggedIn = item.dataset.js.includes(user ? 'logged-in' : 'logged-out')
+        if(userLoggedIn) {
+            item.style.display = 'block'
+            return
+        }
+        item.style.display = 'none'
     })
 }
 
@@ -23,3 +23,7 @@ export const signOutUser =
             signOut(auth).then(() => console.log('Deslogado'))
         }
     })
+
+export const getCurrentUser = (userFromAuth) => {
+    return userFromAuth.currentUser
+}

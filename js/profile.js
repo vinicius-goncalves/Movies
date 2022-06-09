@@ -86,7 +86,8 @@ const acceptFiles = [
 imageProfileConfiguration.addEventListener('change', () => {
     const typeFile = acceptFiles.join(', ').replace(/image\//g, '')
     const sentImage = imageProfileConfiguration.files
-
+    
+    
     if(acceptFiles.includes(sentImage[0].type)) {
 
         const photoURL = auth.currentUser.photoURL.toString()
@@ -110,3 +111,5 @@ imageProfileConfiguration.addEventListener('change', () => {
         userMessageInformation.textContent = 'O tipo de imagem inserido não é válido. Os tipos aceitos são: ' + typeFile
     }
 })
+
+
