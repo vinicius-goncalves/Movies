@@ -5,10 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta name="robots" content="noindex">
+    <meta name="googlebot" content="none">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="/style/template.css">
-    <link rel="stylesheet" href="/style/user-profile.css">
+    <link rel="stylesheet" href="/style/user-profile.css" type="">
+    <link rel="stylesheet alternative" href="/style/template.css">
     <link rel="stylesheet alternative" href="/style/loaders.css">
 </head>
 <body>
@@ -25,6 +26,10 @@
 
         <a href="#" data-js="logged-out" style="display: none;">Entrar</a>
         <a href="#" data-js="logged-out" style="display: none;">Registrar</a>
+
+        <div data-js="logged-in" id="loader-profile-image-container-navbar">
+            <div id="loader-profile-navbar"></div>
+        </div>
 
         <img src="/images/user-photo-profile.png" data-js="logged-in" id="user-image-profile-navbar">
 

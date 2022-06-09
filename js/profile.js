@@ -1,56 +1,38 @@
 import { auth, storage } from './authAndRequests.js'
-import { userNavbar, navbarContainer } from './userExperience.js'
+import { userNavbar, navbarContainer, getCurrentUser, extractPropFromCurrentUser, updateInformation } from './userExperience.js'
 
 import { onAuthStateChanged, signOut, updateProfile, updatePassword, reauthenticateWithCredential, EmailAuthProvider } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-auth.js"
 import { ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-storage.js"
 
 const imageProfileConfiguration = document.querySelector('#send-new-photo')
+
 const userImage = document.querySelector('#user-image')
-
 const userMessageInformation = document.querySelector('#user-message-information')
-
 const userLoreContainer = document.querySelector('[data-js="user-lore"]')
 
 const loader = document.querySelector('#loader-content')
-const profileLoader = document.querySelector('#loader-profile')
+const loaderImageProfile = document.querySelector('#loader-profile')
 
 const username = document.querySelector('#username')
 const email = document.querySelector('#email')
 const password = document.querySelector('#password')
+
 const profile = document.querySelector('#user-image-profile-navbar')
+const loaderProfile = document.querySelector('#loader-profile-navbar')
 
 const customErrors = (errorType) => ({
     'auth/internal-error': 'Um erro interno aconteceu',
     'auth/weak-password': "Senha fraca, tente novamnete",
 })[errorType] || 'Um erro aconteceu'
 
-window.addEventListener('load', () => {
-
-    setTimeout(() => {
-        userImage.setAttribute('src', auth.currentUser.photoURL)
-
-        username.placeholder = auth.currentUser.displayName
-        email.placeholder = auth.currentUser.email
-        profile.setAttribute('src', auth.currentUser.photoURL)
-        
-        loader.style.display = 'none'
-
-    }, 2 * 1000)
-
-    setTimeout(() => {
-        profileLoader.style.display = 'none'
-
-    }, 3 * 1000)
-})
-
 userLoreContainer.addEventListener('click', async (event) => {
 
     if(event.target.dataset.user === "confirm-details") {
 
-        // const credentials = EmailAuthProvider.credential(auth.currentUser.email)
-        // await reauthenticateWithCredential(auth.currentUser, credentials).then(() => {
-        //     console.log('Autenticado', credentials)
-        // })
+        const credentials = EmailAuthProvider.credential(auth.currentUser.email)
+        await reauthenticateWithCredential(auth.currentUser, credentials).then(() => {
+            console.log('Autenticado', credentials)
+        })
 
         updatePassword(auth.currentUser, password.value).then(() => {
             userMessageInformation.textContent = 'Senha alterada com sucesso.'
@@ -71,7 +53,20 @@ navbarContainer.addEventListener('click', (event) => {
 
 onAuthStateChanged(auth, (user) => {
     if(user) {
-        userNavbar(user)
+      userNavbar(user)
+
+      updateInformation(
+          getCurrentUser(auth),
+          (
+            userImage.src = extractPropFromCurrentUser(auth, 'photoURL'), 
+            profile.src = getCurrentUser(auth).photoURL
+          ), 
+          null,
+          (
+            loaderProfile.style.display = 'none',
+            loaderImageProfile.style.display = 'none'
+        ))
+
     } else {
         userNavbar(user)
     }
