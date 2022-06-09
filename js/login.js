@@ -1,4 +1,5 @@
 import { auth, provider } from './authAndRequests.js'
+import { userNavbar } from './userExperience.js'
 import { 
     signOut, 
     onAuthStateChanged, 
@@ -9,18 +10,18 @@ const loginContainer = document.querySelector('[data-js="login-container"]')
 const navbarContainer = document.querySelector('[data-js="nav-bar"]')
 const loginWithGoogleButton = document.querySelector('#login-with-google')
 
-const setupUserNavbar = (user) => {
-    const itemsNavbar = [...navbarContainer.children]
+// const setupUserNavbar = (user) => {
+//     const itemsNavbar = [...navbarContainer.children]
 
-    itemsNavbar.forEach(item => {
-        const userItemNavbar = item.dataset.js.includes(user ? 'logged-in' : 'logged-out')
-        if(userItemNavbar) {
-            item.style.display = 'block'
-            return
-        }
-        item.style.display = 'none'
-    })
-}
+//     itemsNavbar.forEach(item => {
+//         const userItemNavbar = item.dataset.js.includes(user ? 'logged-in' : 'logged-out')
+//         if(userItemNavbar) {
+//             item.style.display = 'block'
+//             return
+//         }
+//         item.style.display = 'none'
+//     })
+// }
 
 loginContainer.addEventListener('submit', (event) => {
     event.preventDefault()
@@ -45,8 +46,8 @@ loginWithGoogleButton.addEventListener('click', () => {
 
 onAuthStateChanged(auth, (user) => {
     if(user) {
-        setupUserNavbar(user)
+        userNavbar(user)
     } else {
-        setupUserNavbar(user)
+        userNavbar(user)
     }
 })

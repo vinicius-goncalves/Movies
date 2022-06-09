@@ -30,9 +30,36 @@ nav a {
 }
 
 #user-image-profile-navbar {
+    position: relative;
     width: 48px;
     height: 48px;
     border-radius: 50%;
     border: 1px solid white;
     cursor: pointer;
+}
+
+#loader-profile-image-container {
+    position: absolute;
+    right: calc(63px / 2);
+    z-index: 5;
+}
+
+#loader-profile {
+    width: 35px;
+    height: 35px;
+    border: 5px solid white;
+    border-bottom-color: #fc0a02;
+    border-radius: 50%;
+    animation: rotate 1s infinite alternate;
+    opacity: .5;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }

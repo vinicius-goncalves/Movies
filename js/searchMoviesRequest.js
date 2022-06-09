@@ -1,5 +1,5 @@
 import { auth, db, apiKeyMovieDB } from "./authAndRequests.js"
-import { userNavbar } from "./userExperience.js"
+import { userNavbar, getCurrentUser } from "./userExperience.js"
 
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-auth.js"
 
@@ -11,31 +11,38 @@ const recentSearchContainer = document.querySelector('#recent-search')
 
 const userProfileAtNavbar = document.querySelector('#user-image-profile-navbar')
 
-setTimeout(() => {
-    userProfileAtNavbar.src = auth.currentUser.photoURL
-}, 2000)
-
-const currentUser = (user) => {
-    return user.currentUser.uid
-}
+const loader = document.querySelector('#loader-profile-image-container')
 
 onAuthStateChanged(auth, async (user) => {
     if(user) {
-        await verifyIfUserExistsInDb(currentUser(auth))
+        await verifyIfUserExistsInDb(getCurrentUser(auth).uid)
         userNavbar(user)
+
+        const promis = new Promise((resolve, reject) => {
+            if(getCurrentUser(auth)) {
+               resolve(userProfileAtNavbar.src = getCurrentUser(auth).photoURL)
+            }else {
+                reject(new Error('Reerror'))
+            }
+        })
+
+        promis.finally(() => {
+            loader.style.display = 'none'
+        })
+
     }else {
         userNavbar(user)
     }
 })
 
-// Input here your API key from moviedb.org
-const urlToRequest = (termToSearch) => {
-   return `https://api.themoviedb.org/3/search/movie?api_key=${apiKeyMovieDB}&language=pt-BR&query=${termToSearch}&page=1&include_adult=false`
-}
 
-const posterPath = (imageLocation) => {
-    return `https://image.tmdb.org/t/p/w500/${imageLocation}`
-}
+const urlToRequest = (termToSearch) =>  
+    `https://api.themoviedb.org/3/search/movie?api_key=
+    ${apiKeyMovieDB}&language=pt-BR&query=
+    ${termToSearch}&page=1&include_adult=false`
+
+const posterPath = (imageLocation) => 
+    `https://image.tmdb.org/t/p/w500/${imageLocation}`
 
 const verifyIfUserExistsInDb = async (user) => {
     getDoc(doc(db, "users", user)).then((dataSnapshot) => {
@@ -98,14 +105,14 @@ const fetchResult = async (searchedTerm) => {
 }
 
 formSearchContainer.addEventListener('input', (event) => {
-    const term = event.target.value
+    const termSearched = event.target.value
 
-    if(term === '') {
+    if(termSearched === '') {
         ulMoviesSearchRresult.innerHTML = ''
         return
     }
 
-    fetchResult(term)
+    fetchResult(termSearched)
 })
 
 formSearchContainer.addEventListener('submit', (event) => {
